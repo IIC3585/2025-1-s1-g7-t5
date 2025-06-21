@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import MarkdownPostLayout from '../../layouts/MarkdownPostLayout.astro';
+import LikeButton from '../../components/LikeButton.svelte';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
@@ -15,4 +16,5 @@ const { Content } = await render(post);
 
 <MarkdownPostLayout frontmatter={post.data}>
   <Content />
+  <LikeButton client:idle postId={post.id} />
 </MarkdownPostLayout>
